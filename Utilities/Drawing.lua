@@ -236,35 +236,6 @@ elseif game.GameId == 358276974 or game.GameId == 3495983524 then -- Apocalypse 
 
     -- TODO: Squad GetTeam function
     --function GetTeam(Target, Character, Mode) end
-elseif game.GameId == 1054526971 then -- Blackhawk Rescue Mission 5
-    local function RequireModule(Name)
-        for Index, Instance in pairs(getmodules()) do
-            if Instance.Name == Name then
-                return require(Instance)
-            end
-        end
-    end
-
-    repeat task.wait() until RequireModule("RoundInterface")
-    local RoundInterface = RequireModule("RoundInterface")
-
-    local function GetSkirmishTeam(Player)
-        for TeamName, TeamData in pairs(RoundInterface.Teams) do
-            for UserId, UserData in pairs(TeamData.Players) do
-                if tonumber(UserId) == Player.UserId then
-                    return TeamName
-                end
-            end
-        end
-    end
-    function GetTeam(Target, Character, Mode)
-        if Mode == "Player" then
-            return not Target.Neutral and LocalPlayer.Team ~= Target.Team
-            or GetSkirmishTeam(LocalPlayer) ~= GetSkirmishTeam(Target), WhiteColor
-        else
-            return not FindFirstChildWhichIsA(Character, "ProximityPrompt", true), WhiteColor
-        end
-    end
 elseif game.GameId == 580765040 then -- RAGDOLL UNIVERSE
     function GetCharacter(Target, Mode)
         local Character = Target.Character
@@ -1842,3 +1813,4 @@ end)
 end)]]
 
 return DrawingLibrary
+
